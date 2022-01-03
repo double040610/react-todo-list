@@ -16,6 +16,9 @@ class TaskStore {
   constructor() {
     makeAutoObservable(this)
   }
+  get isFinished() {
+    return this.list.filter(item => item.done).length
+  }
   get isAll() {
     return this.list.every(item => item.done)
   }

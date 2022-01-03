@@ -58,6 +58,11 @@ function Cart() {
           }
         </ul>
       </section>
+      <footer class="footer">
+        <span class="todo-count">
+          任务总数: {taskStore.list.length} 已完成: {taskStore.isFinished}
+        </span>
+      </footer>
     </section>
   )
 }
