@@ -7,17 +7,11 @@ import { useState } from 'react'
 function Cart() {
   const { taskStore } = useStore()
   // 单选
-  const singleCheck = (id, e) => {
-    taskStore.singleCheck(id, e.target.checked)
-  }
+  const singleCheck = (id, e) => taskStore.singleCheck(id, e.target.checked)
   // 删除
-  const delTask = (id) => {
-    taskStore.delCart(id)
-  }
+  const delTask = (id) => taskStore.delCart(id)
   // 全选
-  const allCheck = (e) => {
-    taskStore.allCheck(e.target.checked)
-  }
+  const allCheck = (e) => taskStore.allCheck(e.target.checked)
   // 新增
   const [taskValue, setTaskValue] = useState('')
   const addtTask = () => {
@@ -26,7 +20,7 @@ function Cart() {
       title: taskValue,
       done: false
     })
-  }
+  } 
 
   const keyUpHandler = (e) => {
     // enter
