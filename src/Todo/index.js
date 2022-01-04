@@ -1,6 +1,8 @@
 import { useStore } from '../store'
 import { observer } from 'mobx-react-lite'
+import uuid from 'react-uuid'
 import './index.css'
+import { useState } from 'react'
 
 function Cart() {
   const { taskStore } = useStore()
@@ -9,13 +11,31 @@ function Cart() {
     taskStore.singleCheck(id, e.target.checked)
   }
   // 删除
-  const delCart = (id) => {
+  const delTask = (id) => {
     taskStore.delCart(id)
   }
   // 全选
   const allCheck = (e) => {
     taskStore.allCheck(e.target.checked)
   }
+  // 新增
+  const [taskValue, setTaskValue] = useState('')
+  const addtTask = () => {
+    taskStore.addTask({
+      id: uuid(),
+      title: taskValue,
+      done: false
+    })
+  }
+
+  const keyUpHandler = (e) => {
+    // enter
+    if (e.keyCode === 13) {
+      addtTask()
+      setTaskValue('')
+    }
+  }
+
   return (
     <section className="todoapp">
       <header className="header">
@@ -25,7 +45,9 @@ function Cart() {
           autoFocus
           autoComplete="off"
           placeholder="What needs to be done?"
-
+          value={taskValue}
+          onChange={(e) => setTaskValue(e.target.value)}
+          onKeyUp={keyUpHandler}
         />
       </header>
       <section className="main">
@@ -51,15 +73,15 @@ function Cart() {
                     checked={task.done}
                     onChange={(e) => singleCheck(task.id, e)} />
                   <label > {task.title} </label>
-                  <button className="destroy" onClick={() => delCart(task.id)}></button>
+                  <button className="destroy" onClick={() => delTask(task.id)}></button>
                 </div>
               </li>
             ))
           }
         </ul>
       </section>
-      <footer class="footer">
-        <span class="todo-count">
+      <footer className="footer">
+        <span className="todo-count">
           任务总数: {taskStore.list.length} 已完成: {taskStore.isFinished}
         </span>
       </footer>

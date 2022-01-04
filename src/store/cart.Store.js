@@ -35,5 +35,9 @@ class TaskStore {
   allCheck(checked) {
     this.list.forEach(item => item.done = checked)
   }
+  // 添加任务
+  addTask(newTask) {
+    this.list.push(newTask)
+  }
 }
 export default TaskStore
