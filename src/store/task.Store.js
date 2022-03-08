@@ -16,27 +16,27 @@ class TaskStore {
   constructor() {
     makeAutoObservable(this)
   }
-  get isFinished() {
+  get isFinished () {
     return this.list.filter(item => item.done).length
   }
-  get isAll() {
+  get isAll () {
     return this.list.every(item => item.done)
   }
   // 单选
-  singleCheck(id, checked) {
+  singleCheck (id, checked) {
     const target = this.list.find(item => item.id === id)
     target.done = checked
   }
   // 删除
-  delCart(id) {
+  delCart (id) {
     this.list = this.list.filter(item => item.id !== id)
   }
   // 全选
-  allCheck(checked) {
+  allCheck (checked) {
     this.list.forEach(item => item.done = checked)
   }
   // 添加任务
-  addTask(newTask) {
+  addTask (newTask) {
     this.list.push(newTask)
   }
 }

@@ -4,7 +4,7 @@ import uuid from 'react-uuid'
 import './index.css'
 import { useState } from 'react'
 
-function Cart() {
+function Cart () {
   const { taskStore } = useStore()
   // 单选
   const singleCheck = (id, e) => taskStore.singleCheck(id, e.target.checked)
@@ -20,7 +20,7 @@ function Cart() {
       title: taskValue,
       done: false
     })
-  } 
+  }
 
   const keyUpHandler = (e) => {
     // enter
