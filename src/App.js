@@ -1,8 +1,8 @@
-
+import { observer } from 'mobx-react-lite'
 import Todo from './Todo'
 function App() {
   return (
     <Todo />
   )
 }
-export default App
+export default observer(App)

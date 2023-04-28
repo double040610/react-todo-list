@@ -4,23 +4,34 @@ class TaskStore {
   list = [
     {
       id: 1,
-      title: '学习react',
-      done: true
+      title: '學習React',
+      done: false
     },
     {
       id: 2,
-      title: '搞定mobx',
-      done: true
+      title: '理解Mobx',
+      done: false
+    },
+    {
+      id: 3,
+      title: '運用Hooks',
+      done: false
+    },
+    {
+      id: 4,
+      title: '前端開發之路！',
+      done: false
     }
+
   ]
   constructor() {
     makeAutoObservable(this)
   }
   get isFinished () {
-    return this.list.filter(item => item.done).length
-  }
+  return this.list.filter(item => item.done).length
+}
   get isAll () {
-    return this.list.every(item => item.done)
+  return this.list.every(item => item.done)
   }
   // 单选
   singleCheck (id, checked) {

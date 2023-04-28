@@ -14,18 +14,20 @@ function Cart () {
   const allCheck = (e) => taskStore.allCheck(e.target.checked)
   // 新增
   const [taskValue, setTaskValue] = useState('')
-  const addtTask = () => {
-    taskStore.addTask({
-      id: uuid(),
-      title: taskValue,
-      done: false
-    })
+  const addTask = () => {
+    if(taskValue.trim() !== ''){
+      taskStore.addTask({
+        id: uuid(),
+        title: taskValue,
+        done: false
+      })
+    }
   }
 
   const keyUpHandler = (e) => {
     // enter
-    if (e.keyCode === 13) {
-      addtTask()
+    if (e.key == "Enter") {
+      addTask()
       setTaskValue('')
     }
   }
@@ -49,8 +51,9 @@ function Cart () {
           id="toggle-all"
           className="toggle-all"
           type="checkbox"
-          onChange={allCheck}
           checked={taskStore.isAll}
+          onChange={allCheck}
+          
         />
         <label htmlFor="toggle-all"></label>
         <ul className="todo-list">
@@ -76,7 +79,7 @@ function Cart () {
       </section>
       <footer className="footer">
         <span className="todo-count">
-          任务总数: {taskStore.list.length} 已完成: {taskStore.isFinished}
+          任務總數: {taskStore.list.length} 已完成: {taskStore.isFinished}
         </span>
       </footer>
     </section>
